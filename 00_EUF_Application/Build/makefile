@@ -2,7 +2,7 @@ MCU=atmega32
 CC=avr-gcc
 OBJCOPY=avr-objcopy
 CFLAGS=-Wall -g -Os -mmcu=${MCU}
-TARGET=Automotiv_TG_Detection
+TARGET=ATGD
 OBJFILES = program1.o program2.o
 SRCS=program1.c
 SRCSS=program2.c
