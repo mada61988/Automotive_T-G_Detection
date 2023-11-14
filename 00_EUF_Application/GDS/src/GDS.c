@@ -18,7 +18,7 @@
 
 /***** INCLUDES: ******/
 #include "../../../01_ECF_Package/Appl/Source/BSW/Config/Platform_Types.h"
-
+#include "../../../01_ECF_Package/Appl/Source/BSW/Config/BIT_MATH.h"
 
 void CDS_vidManager(void)
 {
