@@ -87,7 +87,7 @@ SRC11 = $(DIO).c
 SRC12 = $(LM35).c
 SRC13 = $(MQ2).c
 SRC14 = $(RTE).c
-# List Assembler source files here.
+# List Assembler source files he
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
 #     will not be considered source files but generated files (assembler
 #     output from the compiler), and will be deleted upon "make clean"!
