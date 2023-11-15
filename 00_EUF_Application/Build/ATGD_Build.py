@@ -41,9 +41,25 @@ def copyDirectoryContent(source_folder):
 			shutil.copy(source, destination)
 			print('copied', file_name)
 
+def deleteDirectoryContents():
+	# Fetch all files
+	
+	for file_name in os.listdir(destination_folder):
+		if (file_name == "ATGD_Build.py") | (file_name == "makefile"):
+			print("======================== This is a restricted file ============================")
+		else:
+				if os.path.isfile(file_name):
+					print("FILE: "+file_name+" Deleted")
+					os.remove(file_name)
+					
+				else: 
+					shutil.rmtree(".dep")
+					print("DIR: .dep Deleted")
+				
 
 
 
+deleteDirectoryContents()
 copyDirectoryContent(TDSIncFilePath)
 copyDirectoryContent(TDSSrcFilePath)
 
