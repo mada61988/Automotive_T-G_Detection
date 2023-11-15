@@ -1,6 +1,6 @@
 # Hey Emacs, this is a -*- makefile -*-
 #----------------------------------------------------------------------------
-# WinAVR Makefile Template written by Eric B. Weddington, Jörg Wunsch, et al.
+# WinAVR Makefile Template written by Eric B. Weddington, Jï¿½rg Wunsch, et al.
 #
 # Released to the Public Domain
 #
@@ -58,23 +58,35 @@ FORMAT = ihex
 OUTPUT= ATGD
 
 # Target file name (without extension).
-TARGET = tasks
-TARGET2 = timers
-TARGET3 = queue
-TARGET4 = croutine
-TARGET5 = heap_1
-TARGET6 = list
-TARGET7 = port
-TARGET8 = main
+TASKS=tasks
+TIMERS=timers
+QUEUE=queue
+CROUTINE=croutine
+HEAP_1 = heap_1
+LIST = list
+PORT = port
+MAIN = main
+GDS = GDS
+TDS = TDS
+DIO= dio_program
+LM35= LM35_Prog
+MQ2 = MQ2_Prog
+RTE = RTE
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c
-SRC2 = $(TARGET2).c
-SRC3 = $(TARGET3).c
-SRC4 = $(TARGET4).c
-SRC5 = $(TARGET5).c
-SRC6 = $(TARGET6).c
-SRC7 = $(TARGET7).c
-SRC8 = $(TARGET8).c
+SRC = $(TIMERS).c
+SRC2 = $(TASKS).c
+SRC3 = $(QUEUE).c
+SRC4 = $(CROUTINE).c
+SRC5 = $(HEAP_1).c
+SRC6 = $(LIST).c
+SRC7 = $(PORT).c
+SRC8 = $(MAIN).c
+SRC9 = $(GDS).c
+SRC10 = $(TDS).c
+SRC11 = $(DIO).c
+SRC12 = $(LM35).c
+SRC13 = $(MQ2).c
+SRC14 = $(RTE).c
 # List Assembler source files here.
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
 #     will not be considered source files but generated files (assembler
@@ -309,10 +321,10 @@ MSG_CLEANING = Cleaning project:
 
 
 # Define all object files.
-OBJ = $(SRC:.c=.o) $(SRC2:.c=.o) $(SRC3:.c=.o) $(SRC4:.c=.o) $(SRC5:.c=.o) $(SRC6:.c=.o) $(SRC7:.c=.o) $(SRC8:.c=.o) $(ASRC:.S=.o) 
+OBJ = $(SRC:.c=.o) $(SRC2:.c=.o) $(SRC3:.c=.o) $(SRC4:.c=.o) $(SRC5:.c=.o) $(SRC6:.c=.o) $(SRC7:.c=.o) $(SRC8:.c=.o) $(SRC9:.c=.o) $(SRC10:.c=.o) $(SRC11:.c=.o) $(SRC12:.c=.o) $(SRC13:.c=.o) $(SRC14:.c=.o) $(ASRC:.S=.o) 
 
 # Define all listing files.
-LST = $(SRC:.c=.lst) $(SRC2:.c=.lst) $(SRC3:.c=.o) $(SRC4:.c=.lst) $(SRC5:.c=.o) $(SRC6:.c=.lst) $(SRC7:.c=.o) $(SRC8:.c=.o) $(ASRC:.S=.lst) 
+LST = $(SRC:.c=.lst) $(SRC2:.c=.lst) $(SRC3:.c=.lst) $(SRC4:.c=.lst) $(SRC5:.c=.lst) $(SRC6:.c=.lst) $(SRC7:.c=.lst) $(SRC8:.c=.lst) $(SRC9:.c=.lst) $(SRC10:.c=.lst) $(SRC11:.c=.lst) $(SRC12:.c=.lst) $(SRC13:.c=.lst) $(SRC14:.c=.lst) $(ASRC:.S=.lst)
 
 
 # Compiler flags to generate dependency files.
