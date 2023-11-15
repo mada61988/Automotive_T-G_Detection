@@ -17,8 +17,8 @@
 
 
 /***** INCLUDES: ******/
-#include "../../../01_ECF_Package/Appl/Source/BSW/Config/Platform_Types.h"
-#include "../../../01_ECF_Package/Appl/Source/BSW/Config/BIT_MATH.h"
+#include "Platform_Types.h"
+#include "BIT_MATH.h"
 
 void TDS_vidManager(void)
 {
