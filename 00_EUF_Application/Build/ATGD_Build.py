@@ -24,8 +24,8 @@ MQ2SrcFilePath="../../01_ECF_Package/Appl/Source/BSW/MQ2/src/"
 	#OS
 OSFilePath="../../01_ECF_Package/Appl/Source/BSW/OS/"
 	#RTE
-RTEIncFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/inc"
-RTESrcFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/src"
+RTEIncFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/inc/"
+RTESrcFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/src/"
 	#CONFIG
 ConfigFilePath="../../01_ECF_Package/Appl/Source/BSW/Config/"
 mainFilePath = "../main.c"
@@ -64,6 +64,10 @@ def deleteDirectoryContents():
 
 
 deleteDirectoryContents()
+
+copyDirectoryContent(RTEIncFilePath)
+copyDirectoryContent(RTESrcFilePath)
+
 copyDirectoryContent(TDSIncFilePath)
 copyDirectoryContent(TDSSrcFilePath)
 
@@ -81,8 +85,7 @@ copyDirectoryContent(MQ2SrcFilePath)
 
 copyDirectoryContent(OSFilePath)
 
-copyDirectoryContent(RTEIncFilePath)
-copyDirectoryContent(RTESrcFilePath)
+
 
 copyDirectoryContent(ConfigFilePath)
 shutil.copy(mainFilePath,"./main.c")
