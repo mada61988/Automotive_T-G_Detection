@@ -27,11 +27,14 @@ OSFilePath="../../01_ECF_Package/Appl/Source/BSW/OS/"
 RTEFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/"
 	#CONFIG
 ConfigFilePath="../../01_ECF_Package/Appl/Source/BSW/Config/"
+mainFilePath = "../main.c"
+
 
 
 # Function Implementation
 def copyDirectoryContent(source_folder):
 	# fetch all files
+	
 	for file_name in os.listdir(source_folder):
 		# construct full file path
 		source=source_folder+file_name
@@ -67,7 +70,7 @@ copyDirectoryContent(GDSIncFilePath)
 copyDirectoryContent(GDSSrcFilePath)
 
 copyDirectoryContent(DIOFilePath)
-#copyDirectoryContent(GDSSrcFilePath)
+
 
 copyDirectoryContent(LM35IncFilePath)
 copyDirectoryContent(LM35SrcFilePath)
@@ -80,3 +83,4 @@ copyDirectoryContent(OSFilePath)
 copyDirectoryContent(RTEFilePath)
 
 copyDirectoryContent(ConfigFilePath)
+shutil.copy(mainFilePath,"./main.c")
