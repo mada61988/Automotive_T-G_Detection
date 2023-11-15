@@ -17,10 +17,25 @@
 
 
 /***** INCLUDES: ******/
+#include "TDS.h"
+#include "TDS_Wrp.h"
 #include "Platform_Types.h"
 #include "BIT_MATH.h"
 
-void TDS_vidManager(void)
+
+/****
+- GLOBALVARS:  
+****/
+uint8 TDS_u8State; 
+
+
+
+void TDS_vidInit(void)
+{
+    TDS_u8State=IDLE;
+}
+
+void TDS_vidManager(void *pv)
 {
     // do something
 }

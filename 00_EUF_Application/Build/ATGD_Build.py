@@ -2,6 +2,11 @@
 import shutil
 import os
 
+print("--------- 1- Build project---------")
+print("--------- 2- Flash Binaries ---------")
+print("--------- 3- Build and Flash ---------")
+USER_INPUT=int(input("ACTION: "))
+
 #Stds
 destination_folder="./"
 
@@ -61,31 +66,49 @@ def deleteDirectoryContents():
 					print("DIR: .dep Deleted")
 				
 
+#Build or Build and flash
+if((USER_INPUT == 1) | (USER_INPUT == 3)): 
+	deleteDirectoryContents()
+
+	copyDirectoryContent(RTEIncFilePath)
+	copyDirectoryContent(RTESrcFilePath)
+
+	copyDirectoryContent(TDSIncFilePath)
+	copyDirectoryContent(TDSSrcFilePath)
+
+	copyDirectoryContent(GDSIncFilePath)
+	copyDirectoryContent(GDSSrcFilePath)
+
+	copyDirectoryContent(DIOFilePath)
 
 
-deleteDirectoryContents()
+	copyDirectoryContent(LM35IncFilePath)
+	copyDirectoryContent(LM35SrcFilePath)
 
-copyDirectoryContent(RTEIncFilePath)
-copyDirectoryContent(RTESrcFilePath)
+	copyDirectoryContent(MQ2IncFilePath)
+	copyDirectoryContent(MQ2SrcFilePath)
 
-copyDirectoryContent(TDSIncFilePath)
-copyDirectoryContent(TDSSrcFilePath)
-
-copyDirectoryContent(GDSIncFilePath)
-copyDirectoryContent(GDSSrcFilePath)
-
-copyDirectoryContent(DIOFilePath)
-
-
-copyDirectoryContent(LM35IncFilePath)
-copyDirectoryContent(LM35SrcFilePath)
-
-copyDirectoryContent(MQ2IncFilePath)
-copyDirectoryContent(MQ2SrcFilePath)
-
-copyDirectoryContent(OSFilePath)
+	copyDirectoryContent(OSFilePath)
 
 
 
-copyDirectoryContent(ConfigFilePath)
-shutil.copy(mainFilePath,"./main.c")
+	copyDirectoryContent(ConfigFilePath)
+	shutil.copy(mainFilePath,"./main.c")
+
+	print(" ")
+	print("========= MAKE Started ===========")
+	print(" ")
+
+	os.system("make")
+
+	if(USER_INPUT == 3):
+		os.system("avrdude -p atmega32 -c usbasp -U flash:w:ATGD.hex:i -F -P usb")
+	#Endif
+
+if(USER_INPUT==2):
+	os.system("avrdude -p atmega32 -c usbasp -U flash:w:ATGD.hex:i -F -P usb")
+
+
+
+
+#avrdude -p atmega32 -c usbasp -U flash:w:ATGD.hex:i -F -P usb

@@ -19,12 +19,13 @@ void DIO_INIT(){
 	     /*
 		 *Initialize the Data Direction of the KEYPAD Registers
 		 */
+		 /*
 							DDRC=0x0F;
 							PORTC=0xFF;
 							DDRA=0xFF;
 
 							DDRD=0b00100010;
 													//PORTD =0xFF;
-
-
+*/
+PORTB = 0xFF;
 }
