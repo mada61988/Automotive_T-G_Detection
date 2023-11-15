@@ -24,7 +24,8 @@ MQ2SrcFilePath="../../01_ECF_Package/Appl/Source/BSW/MQ2/src/"
 	#OS
 OSFilePath="../../01_ECF_Package/Appl/Source/BSW/OS/"
 	#RTE
-RTEFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/"
+RTEIncFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/inc"
+RTESrcFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/src"
 	#CONFIG
 ConfigFilePath="../../01_ECF_Package/Appl/Source/BSW/Config/"
 mainFilePath = "../main.c"
@@ -80,7 +81,8 @@ copyDirectoryContent(MQ2SrcFilePath)
 
 copyDirectoryContent(OSFilePath)
 
-copyDirectoryContent(RTEFilePath)
+copyDirectoryContent(RTEIncFilePath)
+copyDirectoryContent(RTESrcFilePath)
 
 copyDirectoryContent(ConfigFilePath)
 shutil.copy(mainFilePath,"./main.c")
