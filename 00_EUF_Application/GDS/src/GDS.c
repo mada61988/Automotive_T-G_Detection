@@ -19,15 +19,14 @@
 #include "Platform_Types.h"
 #include "GDS.h"
 #include "GDS_Wrp.h"
+#include "Platform_Types.h"
+#include "BIT_MATH.h"
 
 /****
 - GLOBALVARS:  
 ****/
 uint8 u8GDS_State; 
 
-/***** INCLUDES: ******/
-#include "Platform_Types.h"
-#include "BIT_MATH.h"
 
 void GDS_vidInit(void)
 {

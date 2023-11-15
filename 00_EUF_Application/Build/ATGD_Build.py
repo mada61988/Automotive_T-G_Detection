@@ -35,7 +35,8 @@ RTESrcFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/src/"
 ConfigFilePath="../../01_ECF_Package/Appl/Source/BSW/Config/"
 mainFilePath = "../main.c"
 
-
+ADCSrcFilePath = "../../01_ECF_Package/Appl/Source/BSW/ADC/src/"
+ADCIncFilePath = "../../01_ECF_Package/Appl/Source/BSW/ADC/inc/"
 
 # Function Implementation
 def copyDirectoryContent(source_folder):
@@ -90,7 +91,8 @@ if((USER_INPUT == 1) | (USER_INPUT == 3)):
 
 	copyDirectoryContent(OSFilePath)
 
-
+	copyDirectoryContent(ADCIncFilePath)
+	copyDirectoryContent(ADCSrcFilePath)
 
 	copyDirectoryContent(ConfigFilePath)
 	shutil.copy(mainFilePath,"./main.c")
