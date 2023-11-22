@@ -10,7 +10,7 @@
 
 typedef unsigned short int      uint16;
 typedef unsigned long int       uint32;
-typedef unsigned char           uint8;
+typedef unsigned char           uint8 ;
 typedef signed char             sint8;
 
 #define E_OK                       0 

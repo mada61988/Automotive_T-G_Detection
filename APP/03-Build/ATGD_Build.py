@@ -13,30 +13,25 @@ destination_folder="./"
 
 #DirectoryPath
 	#TDS
-TDSIncFilePath="../TDS/inc/"
-TDSSrcFilePath="../TDS/src/"
+TDSIncFilePath="../01-TDS/inc/"
+TDSSrcFilePath="../01-TDS/src/"
 	#GDS
-GDSIncFilePath="../GDS/inc/"
-GDSSrcFilePath="../GDS/src/"
+GDSIncFilePath="../02-GDS/inc/"
+GDSSrcFilePath="../02-GDS/src/"
 	#DIO
-DIOFilePath="../../01_ECF_Package/Appl/Source/BSW/DIO/"
-	#LM35
-LM35IncFilePath="../../01_ECF_Package/Appl/Source/BSW/LM35/inc/"
-LM35SrcFilePath="../../01_ECF_Package/Appl/Source/BSW/LM35/src/"
-	#MQ2
-MQ2IncFilePath="../../01_ECF_Package/Appl/Source/BSW/MQ2/inc/"
-MQ2SrcFilePath="../../01_ECF_Package/Appl/Source/BSW/MQ2/src/"
+DIOFilePath="../../MCAL/01-DIO/"
 	#OS
-OSFilePath="../../01_ECF_Package/Appl/Source/BSW/OS/"
-	#RTE
-RTEIncFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/inc/"
-RTESrcFilePath="../../01_ECF_Package/Appl/Source/BSW/RTE/src/"
-	#CONFIG
-ConfigFilePath="../../01_ECF_Package/Appl/Source/BSW/Config/"
+OSFilePath="../../OS/"
+	#LIB
+LIBFilePath="../../LIB/"
 mainFilePath = "../main.c"
+	#ADC
+ADCSrcFilePath = "../../MCAL/02-ADC/src/"
+ADCIncFilePath = "../../MCAL/02-ADC/inc/"
 
-ADCSrcFilePath = "../../01_ECF_Package/Appl/Source/BSW/ADC/src/"
-ADCIncFilePath = "../../01_ECF_Package/Appl/Source/BSW/ADC/inc/"
+	#ADC
+LCDSrcFilePath = "../../HAL/01-LCD/src/"
+LCDIncFilePath = "../../HAL/01-LCD/inc/"
 
 # Function Implementation
 def copyDirectoryContent(source_folder):
@@ -71,9 +66,6 @@ def deleteDirectoryContents():
 if((USER_INPUT == 1) | (USER_INPUT == 3)): 
 	deleteDirectoryContents()
 
-	copyDirectoryContent(RTEIncFilePath)
-	copyDirectoryContent(RTESrcFilePath)
-
 	copyDirectoryContent(TDSIncFilePath)
 	copyDirectoryContent(TDSSrcFilePath)
 
@@ -83,18 +75,16 @@ if((USER_INPUT == 1) | (USER_INPUT == 3)):
 	copyDirectoryContent(DIOFilePath)
 
 
-	copyDirectoryContent(LM35IncFilePath)
-	copyDirectoryContent(LM35SrcFilePath)
-
-	copyDirectoryContent(MQ2IncFilePath)
-	copyDirectoryContent(MQ2SrcFilePath)
-
 	copyDirectoryContent(OSFilePath)
 
 	copyDirectoryContent(ADCIncFilePath)
 	copyDirectoryContent(ADCSrcFilePath)
 
-	copyDirectoryContent(ConfigFilePath)
+	copyDirectoryContent(LIBFilePath)
+
+	copyDirectoryContent(LCDIncFilePath)
+	copyDirectoryContent(LCDSrcFilePath)
+
 	shutil.copy(mainFilePath,"./main.c")
 
 	print(" ")

@@ -2,7 +2,7 @@
 #define EUF_APP_GDS_H
 
 //prototypes
-void GDS_vidManager(void *pv);
+void GDS_vidManager(void *pt);
 void GDS_vidInit(void);
 
 // STATE

@@ -7,8 +7,10 @@
 #include <avr/io.h>
 #include "Platform_Types.h"
 #include "BIT_MATH.h"
+#include "ADC_Register.h"
 #include "ADC.h"
-#include "RTE_ADC.h"
+#include "ADC_Interface.h"
+#include "LCD_Interface.h"
 
 void ADC_Init (void)
 {
@@ -29,13 +31,13 @@ void ADC_Init (void)
 	SET_BIT(ADMUX,ADMUX_ADLAR);
 }
 
-void ADC_u8ReadChannel (uint8 u8Channel)
+uint8 ADC_u8ReadChannel (uint8  u8Channel)
 {
 	//Clear the MUX bits in ADMUX Reg
 	ADMUX &= 0b11100000;
 
 	//Set the required chanel in ADMUX
-	ADMUC |= u8Channel;
+	ADMUX |= u8Channel;
 
 	//Start Conversion in Single conversion mode
 	SET_BIT(ADCSRA,ADCSRA_ADSC);
@@ -45,9 +47,7 @@ void ADC_u8ReadChannel (uint8 u8Channel)
 
 	// clear conversion clear flag
 	SET_BIT(ADCSRA,ADCSRA_ADIF);
+LCD_SEND_XY(0,0,"sssssssssssss");
+	return ADCH_Reg;
 
-	//return ADCH;
-
-	//Send result to App through RTE 
-	Rte_Write_PpSrADCSendTempResult_P(ADCH);
 }

@@ -1,31 +1,30 @@
-/*
- * dio_register.h
- *
- *  Created on: Dec 5, 2022
- *      Author: MohamedAyman
- */
+/**************************************************************************/
+/************************DIO-Register Interfacing File**********************/
+/**************************************************************************/
 
-#ifndef MCAL_DIO_DIO_REGISTER_H_
-#define MCAL_DIO_DIO_REGISTER_H_
+/******HeaderGuard******/
+#ifndef DIO_REGISTER_H
+#define DIO_REGISTER_H
 
-/*******************
- * DIO-REGISTERS
-*******************/
-#define DDRA *((volatile uint8 *)0x3A)
-#define PINA *((volatile uint8 *)0x39)
-#define PORTA *((volatile uint8 *)0x3B)
+/***VolatileModifier**/
+/* Used to stop the Compiler Optimization, When the Compliler creates a copy of the register defined, and use it in the While loop, to consume the timing. So the register value will not be checked in every while loop.
+*/
 
-#define DDRB *((volatile uint8 *)0x37)
-#define PINB *((volatile uint8 *)0x36)
-#define PORTB *((volatile uint8 *)0x38)
+/*****RegistersDeclarations*****/ 
+#define DDRA_REG *((volatile uint8 *)0x3A) 
+#define PORTA_REG *((volatile uint8 *)0x3B)
+#define PINA_REG *((volatile uint8 *)0x39)
 
-#define DDRC *((volatile uint8 *)0x34)
-#define PINC *((volatile uint8 *)0x33)
-#define PORTC *((volatile uint8 *)0x35)
+#define DDRB_REG  *((volatile uint8 *)0x37)
+#define PORTB_REG *((volatile uint8 *)0x38)	
+#define PINB_REG  *((volatile uint8 *)0x36)
 
-#define DDRD *((volatile uint8*)0x31)
-#define PORTD *((volatile uint8*)0x32)
-#define PIND *((volatile uint8*) 0x30)
-/*******************/
+#define DDRC_REG  *((volatile uint8 *)0x34)
+#define PORTC_REG *((volatile uint8 *)0x35)
+#define PINC_REG  *((volatile uint8 *)0x33)
 
-#endif /* MCAL_DIO_DIO_REGISTER_H_ */
+#define DDRD_REG  *((volatile uint8 *)0x31)
+#define PORTD_REG *((volatile uint8 *)0x32)
+#define PIND_REG  *((volatile uint8 *)0x30)
+
+#endif 
