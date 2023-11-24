@@ -71,6 +71,7 @@ TDS = TDS
 DIO= dio_program
 ADC = ADC
 LCD= LCD_Program
+BUZZ= buzz
 # List C source files here. (C dependencies are automatically generated.)
 SRC = $(TIMERS).c
 SRC2 = $(TASKS).c
@@ -84,6 +85,7 @@ SRC9 = $(GDS).c
 SRC10 = $(TDS).c
 SRC11 = $(DIO).c
 SRC12 = $(LCD).c
+SRC13 = $(BUZZ).c
 SRC15 = $(ADC).c
 # List Assembler source files he
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
@@ -319,10 +321,10 @@ MSG_CLEANING = Cleaning project:
 
 
 # Define all object files.
-OBJ = $(SRC:.c=.o) $(SRC2:.c=.o) $(SRC3:.c=.o) $(SRC4:.c=.o) $(SRC5:.c=.o) $(SRC6:.c=.o) $(SRC7:.c=.o) $(SRC8:.c=.o) $(SRC9:.c=.o) $(SRC10:.c=.o) $(SRC11:.c=.o) $(SRC12:.c=.o) $(SRC15:.c=.o) $(ASRC:.S=.o) 
+OBJ = $(SRC:.c=.o) $(SRC2:.c=.o) $(SRC3:.c=.o) $(SRC4:.c=.o) $(SRC5:.c=.o) $(SRC6:.c=.o) $(SRC7:.c=.o) $(SRC8:.c=.o) $(SRC9:.c=.o) $(SRC10:.c=.o) $(SRC11:.c=.o) $(SRC12:.c=.o) $(SRC13:.c=.o) $(SRC15:.c=.o) $(ASRC:.S=.o) 
 
 # Define all listing files.
-LST = $(SRC:.c=.lst) $(SRC2:.c=.lst) $(SRC3:.c=.lst) $(SRC4:.c=.lst) $(SRC5:.c=.lst) $(SRC6:.c=.lst) $(SRC7:.c=.lst) $(SRC8:.c=.lst) $(SRC9:.c=.lst) $(SRC10:.c=.lst) $(SRC11:.c=.lst) $(SRC12:.c=.lst) $(SRC15:.c=.lst) $(ASRC:.S=.lst)
+LST = $(SRC:.c=.lst) $(SRC2:.c=.lst) $(SRC3:.c=.lst) $(SRC4:.c=.lst) $(SRC5:.c=.lst) $(SRC6:.c=.lst) $(SRC7:.c=.lst) $(SRC8:.c=.lst) $(SRC9:.c=.lst) $(SRC10:.c=.lst) $(SRC11:.c=.lst) $(SRC12:.c=.lst) $(SRC13:.c=.lst) $(SRC15:.c=.lst) $(ASRC:.S=.lst)
 
 
 # Compiler flags to generate dependency files.

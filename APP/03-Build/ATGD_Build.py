@@ -33,6 +33,9 @@ ADCIncFilePath = "../../MCAL/02-ADC/inc/"
 LCDSrcFilePath = "../../HAL/01-LCD/src/"
 LCDIncFilePath = "../../HAL/01-LCD/inc/"
 
+	#BUZZER
+BUZZFilePath = "../../HAL/02-BUZZ/"
+
 # Function Implementation
 def copyDirectoryContent(source_folder):
 	# fetch all files
@@ -84,6 +87,8 @@ if((USER_INPUT == 1) | (USER_INPUT == 3)):
 
 	copyDirectoryContent(LCDIncFilePath)
 	copyDirectoryContent(LCDSrcFilePath)
+
+	copyDirectoryContent(BUZZFilePath)
 
 	shutil.copy(mainFilePath,"./main.c")
 

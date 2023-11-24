@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "lcd_interface.h": "c"
+        "lcd_interface.h": "c",
+        "adc_interface.h": "c",
+        "stdlib.h": "c",
+        "buzz.h": "c"
     }
 }

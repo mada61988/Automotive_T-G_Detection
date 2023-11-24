@@ -22,16 +22,16 @@ void ADC_Init (void)
 	SET_BIT(ADCSRA,ADCSRA_ADPS1);
 	SET_BIT(ADCSRA,ADCSRA_ADPS0);
 
-
+	SET_BIT(ADCSRA,ADCSRA_ADSC);
 	// Referance Voltage as AVCC with external capacitor
 	CLR_BIT(ADMUX,ADMUX_REFS1);
 	SET_BIT(ADMUX,ADMUX_REFS0);
 
 	// ADC Use left adjust 
-	SET_BIT(ADMUX,ADMUX_ADLAR);
+	CLR_BIT(ADMUX,ADMUX_ADLAR);
 }
 
-uint8 ADC_u8ReadChannel (uint8  u8Channel)
+uint16 ADC_u8ReadChannel (uint8  u8Channel)
 {
 	//Clear the MUX bits in ADMUX Reg
 	ADMUX &= 0b11100000;
@@ -47,7 +47,7 @@ uint8 ADC_u8ReadChannel (uint8  u8Channel)
 
 	// clear conversion clear flag
 	SET_BIT(ADCSRA,ADCSRA_ADIF);
-LCD_SEND_XY(0,0,"sssssssssssss");
-	return ADCH_Reg;
+
+	return ADC;
 
 }

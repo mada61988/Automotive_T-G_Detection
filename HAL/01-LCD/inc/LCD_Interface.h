@@ -24,6 +24,30 @@
 /**********************************************/
 
 /**********************************************
+ * LCD Raws and Columns
+ **********************************************/
+#define RAW0        0
+#define RAW1        1
+
+#define COLUMN0     0
+#define COLUMN1     1
+#define COLUMN2     2
+#define COLUMN3     3
+#define COLUMN4     4
+#define COLUMN5     5
+#define COLUMN6     6
+#define COLUMN7     7
+#define COLUMN8     8
+#define COLUMN9     9
+#define COLUMN10     10
+#define COLUMN11     11
+#define COLUMN12     12
+#define COLUMN13     13
+#define COLUMN14     14
+#define COLUMN15     15
+#define COLUMN16     16
+
+/**********************************************
  * LCD-FUNCTION-PROTOTYPES
  **********************************************/
 void LCD_INIT();

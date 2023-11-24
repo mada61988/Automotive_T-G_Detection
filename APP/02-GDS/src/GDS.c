@@ -32,7 +32,8 @@ uint8  u8GDS_State;
 
 void GDS_vidInit(void)
 {
-    u8GDS_State = IDLE;
+    u8GDS_State = GDS_stateIDLE;
+
     LCD_SEND_XY(1,0,"SMK-LVL: ");
 }
 
@@ -41,7 +42,7 @@ void GDS_vidManager(void *pt)
     
 while(1)
 {
-LCD_SEND_XY(1,10,"NRML");
+LCD_SEND_XY(1,11,"IDLE");
 vTaskDelay(100);
 }
     

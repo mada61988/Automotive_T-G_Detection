@@ -60,8 +60,8 @@ void DIO_Init(void)
 //===================================================================================
 		
 		//PORTA PIN VALUE
-		DIO_SetPinValue(PORTA,PIN0,PORTA_PIN0_VAL);
-		DIO_SetPinValue(PORTA,PIN1,PORTA_PIN1_VAL);
+		//DIO_SetPinValue(PORTA,PIN0,PORTA_PIN0_VAL);
+		//DIO_SetPinValue(PORTA,PIN1,PORTA_PIN1_VAL);
 		DIO_SetPinValue(PORTA,PIN2,PORTA_PIN2_VAL);
 		DIO_SetPinValue(PORTA,PIN3,PORTA_PIN3_VAL);
 		DIO_SetPinValue(PORTA,PIN4,PORTA_PIN4_VAL);
