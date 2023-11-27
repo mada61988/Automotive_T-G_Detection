@@ -26,6 +26,9 @@
 #include "dio_interface.h"
 #include "LCD_Interface.h"
 #include "ADC_Interface.h"
+#include "buzz.h"
+#include "dio_register.h"
+#include "BIT_MATH.h"
 /****
 - GLOBALVARS:  
 ****/
@@ -35,6 +38,8 @@ xTaskHandle GDSTaskHandler = NULL;
 
 int main()
 {
+ 
+
     // Initialize Modules
 DIO_Init();
 LCD_INIT();
@@ -62,7 +67,7 @@ TDS_vidInit();
 // Create task for every manager function
 xTaskCreate(&TDS_vidManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
 xTaskCreate(&GDS_vidManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
-
+xTaskCreate(&BUZZ_vidBuzzCycleManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
 // Run the Scheduler 
 vTaskStartScheduler();
 

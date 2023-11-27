@@ -3,6 +3,8 @@
         "lcd_interface.h": "c",
         "adc_interface.h": "c",
         "stdlib.h": "c",
-        "buzz.h": "c"
+        "buzz.h": "c",
+        "task.h": "c",
+        "platform_types.h": "c"
     }
 }

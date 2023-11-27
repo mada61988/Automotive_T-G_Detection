@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "buzz.h"
+#include "buzz_interface.h"
 
 /****
 - GLOBALVARS:  
@@ -53,7 +53,6 @@ void TDS_vidManager(void *pt)
    {
 
 
-
    switch(TDS_u8State)
    {
    case IDLE:
@@ -63,7 +62,7 @@ void TDS_vidManager(void *pt)
          TDS_vidDisplayTemp();
 
          TDS_vidLedHander(IDLE);
-         TDS_vidBuzzHandler(IDLE);
+        
 
          if(TDS_flCurrentTempInInteger > MAX_TEMP) TDS_u8State = DANGER;
          
@@ -147,29 +146,11 @@ void TDS_vidManager(void *pt)
 void TDS_vidLedHander(uint8 state)
 {
 
-switch (state)
-{
-   case IDLE:
 
-      
-
-   break;
-
-   case WARNING:
-   
-   break;
-
-   case DANGER:
-   
-   break;
-
-default:
-   break;
-}
 
 }
 
 void TDS_vidBuzzHandler(uint8 state)
 {
-
+  BUZZ_vidBuzzCycleStart(state); // Start a Buzzer Cycle
 }
