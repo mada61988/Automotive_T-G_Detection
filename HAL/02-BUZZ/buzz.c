@@ -32,7 +32,8 @@
 - GLOBALVARS:  
 ****/
 
-BuzzState BUZZ_stBuzzState;
+
+BuzzState BUZZ_stBuzzState = {255U,255U};
 
 
 void BUZZ_vidSetBuzzState(uint8 state)
@@ -82,7 +83,7 @@ void BUZZ_vidBuzzCycleManager(void *pt)
                     break;
                 }
             }
-            BUZZ_stBuzzState.buzzState  == BUZZ_OFF;
+            BUZZ_stBuzzState.buzzState  = BUZZ_OFF;
             vTaskDelay(200);
         }
 }

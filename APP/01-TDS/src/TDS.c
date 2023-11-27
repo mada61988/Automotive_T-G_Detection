@@ -37,7 +37,7 @@ uint8 TDS_u8State;
 uint8 TDS_u8CurrTempArr[16];
 uint8 TDS_u8CelsiusSymbol[]={0b11011111,'C'};
 float TDS_flCurrentTempInInteger;
-
+uint8 *TDM_u8ClrDispArr[] = {0b00100000,0b00100000,0b00100000};
 
 void TDS_vidInit(void)
 {
@@ -51,16 +51,16 @@ void TDS_vidManager(void *pt)
   
    while(1)
    {
+         TDS_vidGetCurrTemp();
 
+         TDS_vidDisplayTemp();
 
    switch(TDS_u8State)
    {
    case IDLE:
 
-         TDS_vidGetCurrTemp();
 
-         TDS_vidDisplayTemp();
-
+LCD_SEND_XY(RAW0,COLUMN0,"IDLE");
          TDS_vidLedHander(IDLE);
         
 
@@ -74,8 +74,7 @@ void TDS_vidManager(void *pt)
 
    case WARNING:
 
-         TDS_vidGetCurrTemp();
-         TDS_vidDisplayTemp();
+LCD_SEND_XY(RAW0,COLUMN0,"WRNING");
          TDS_vidLedHander(WARNING);
          TDS_vidBuzzHandler(WARNING);
 
@@ -94,8 +93,7 @@ void TDS_vidManager(void *pt)
    break;
    
    case DANGER:
-         TDS_vidGetCurrTemp();
-         TDS_vidDisplayTemp();
+LCD_SEND_XY(RAW0,COLUMN0,"DANGER");
          TDS_vidLedHander(DANGER);
          TDS_vidBuzzHandler(DANGER);
 
@@ -109,7 +107,7 @@ void TDS_vidManager(void *pt)
             TDS_u8State=WARNING; 
          }
 
-         else; //same state WARNING
+         else; //same state DANGER  
    break;
 
    default:
@@ -139,6 +137,10 @@ void TDS_vidManager(void *pt)
 
  void TDS_vidDisplayTemp()
  {
+   // Remove the current displayed number first 
+   LCD_SEND_XY(RAW0,COLUMN10,TDM_u8ClrDispArr);
+
+
    LCD_SEND_XY(RAW0,COLUMN10,TDS_u8CurrTempArr);
    LCD_SEND_XY(RAW0,COLUMN14,TDS_u8CelsiusSymbol);
  }
