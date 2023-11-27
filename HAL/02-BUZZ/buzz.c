@@ -26,7 +26,7 @@
 #include <avr/delay.h>
 #include "FreeRTOS.h"
 #include "task.h"
-
+#include "LCD_Interface.h"
 
 /****
 - GLOBALVARS:  

@@ -29,20 +29,25 @@
 #include <stdlib.h>
 #include <math.h>
 #include "buzz_interface.h"
+#include <avr/delay.h>
 
 /****
 - GLOBALVARS:  
 ****/
 uint8 TDS_u8State; 
 uint8 TDS_u8CurrTempArr[16];
-uint8 TDS_u8CelsiusSymbol[]={0b11011111,'C'};
-float TDS_flCurrentTempInInteger;
-uint8 *TDM_u8ClrDispArr[] = {0b00100000,0b00100000,0b00100000};
+uint8 TDS_u8CelsiusSymbol[]={0b11011111,0b01000011};
+uint8 TDM_u8CurrentTemp;
+uint8 TDM_u8ClrDispArr[] = "   ";
+uint8 TDM_u8LastTempVal;
 
 void TDS_vidInit(void)
 {
     TDS_u8State=IDLE;
     LCD_SEND_XY(RAW0,COLUMN0,"ENG-TMP: ");
+    LCD_SEND_XY(RAW0,COLUMN13,"");
+    LCD_DISP_CHAR(0b11011111);
+   LCD_DISP_CHAR(0b01000011);
 }
 
 
@@ -60,13 +65,13 @@ void TDS_vidManager(void *pt)
    case IDLE:
 
 
-LCD_SEND_XY(RAW0,COLUMN0,"IDLE");
+
          TDS_vidLedHander(IDLE);
         
 
-         if(TDS_flCurrentTempInInteger > MAX_TEMP) TDS_u8State = DANGER;
+         if(TDM_u8CurrentTemp > MAX_TEMP) TDS_u8State = DANGER;
          
-         else if( (TDS_flCurrentTempInInteger > WARNING_TEMP) &&  (TDS_flCurrentTempInInteger < MAX_TEMP) ) TDS_u8State = WARNING;
+         else if( (TDM_u8CurrentTemp > WARNING_TEMP) &&  (TDM_u8CurrentTemp < MAX_TEMP) ) TDS_u8State = WARNING;
          
          else; // same state IDLE state
    
@@ -74,16 +79,16 @@ LCD_SEND_XY(RAW0,COLUMN0,"IDLE");
 
    case WARNING:
 
-LCD_SEND_XY(RAW0,COLUMN0,"WRNING");
+
          TDS_vidLedHander(WARNING);
          TDS_vidBuzzHandler(WARNING);
 
-         if(TDS_flCurrentTempInInteger <= WARNING_TEMP) 
+         if(TDM_u8CurrentTemp <= WARNING_TEMP) 
          {
                TDS_u8State=IDLE; 
          }
 
-         else if(TDS_flCurrentTempInInteger > MAX_TEMP)
+         else if(TDM_u8CurrentTemp > MAX_TEMP)
          {
             TDS_u8State=DANGER; 
          }
@@ -93,16 +98,17 @@ LCD_SEND_XY(RAW0,COLUMN0,"WRNING");
    break;
    
    case DANGER:
-LCD_SEND_XY(RAW0,COLUMN0,"DANGER");
+         
+         
          TDS_vidLedHander(DANGER);
          TDS_vidBuzzHandler(DANGER);
 
-         if(TDS_flCurrentTempInInteger <= WARNING_TEMP) 
+         if(TDM_u8CurrentTemp <= WARNING_TEMP) 
          {
                TDS_u8State=IDLE; 
          }
 
-         else if((TDS_flCurrentTempInInteger > WARNING_TEMP) &&  (TDS_flCurrentTempInInteger < MAX_TEMP))
+         else if((TDM_u8CurrentTemp > WARNING_TEMP) &&  (TDM_u8CurrentTemp < MAX_TEMP))
          {
             TDS_u8State=WARNING; 
          }
@@ -129,20 +135,26 @@ LCD_SEND_XY(RAW0,COLUMN0,"DANGER");
   
     float ADC_u8Resolution = 5.0/1024; //4.88v
     float Vout = ((ADC_u8ReadChannel((uint8) 0) ) * ADC_u8Resolution);
-    TDS_flCurrentTempInInteger = (Vout/0.01);
+    TDM_u8CurrentTemp = (Vout/0.01);
   
-    itoa(TDS_flCurrentTempInInteger,TDS_u8CurrTempArr,10.00);
+    itoa(TDM_u8CurrentTemp,TDS_u8CurrTempArr,10.00);
 
  }
 
  void TDS_vidDisplayTemp()
  {
-   // Remove the current displayed number first 
-   LCD_SEND_XY(RAW0,COLUMN10,TDM_u8ClrDispArr);
+   if( (TDM_u8LastTempVal >= 100) && (TDM_u8CurrentTemp < 100) )
+   {
+    // Remove the current displayed number
+    LCD_SEND_XY(RAW0,COLUMN10,TDM_u8ClrDispArr);
+   
+   }
 
 
    LCD_SEND_XY(RAW0,COLUMN10,TDS_u8CurrTempArr);
-   LCD_SEND_XY(RAW0,COLUMN14,TDS_u8CelsiusSymbol);
+   
+
+   TDM_u8LastTempVal = TDM_u8CurrentTemp;
  }
 
 void TDS_vidLedHander(uint8 state)
