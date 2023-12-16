@@ -9,7 +9,7 @@
 
 
 /*********************************    DESCRYPTION:    ********************************************
-- TDS: Tempereture Detection System, the application layer for the Tempereture detection handling.
+- TDS: Tempereture Detection Module, the application layer for the Tempereture detection handling.
 **************************************************************************************************/
 
 
