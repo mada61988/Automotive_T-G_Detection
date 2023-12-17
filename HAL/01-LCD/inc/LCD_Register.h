@@ -13,7 +13,7 @@
 #ifndef HAL_LCD_LCD_REGISTER_H_
 #define HAL_LCD_LCD_REGISTER_H_
 
-#define LCD_PORT PORTC_REG
+#define LCD_PORT PORTD_REG
 #define RS 0
 #define RW 1
 #define Enable 2

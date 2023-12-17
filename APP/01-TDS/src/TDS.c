@@ -46,7 +46,7 @@ void TDS_vidInit(void)
     TDS_u8State=IDLE;
     LCD_SEND_XY(RAW0,COLUMN0,"ENG-TMP: ");
     LCD_SEND_XY(RAW0,COLUMN13,"");
-    LCD_DISP_CHAR(0b11011111);
+   LCD_DISP_CHAR(0b11011111);
    LCD_DISP_CHAR(0b01000011);
 }
 
@@ -132,12 +132,18 @@ void TDS_vidManager(void *pt)
  {
 
    // algorithm
-  
+  /*
     float ADC_u8Resolution = 5.0/1024; //4.88v
     float Vout = ((ADC_u8ReadChannel((uint8) 0) ) * ADC_u8Resolution);
     TDM_u8CurrentTemp = (Vout/0.01);
   
     itoa(TDM_u8CurrentTemp,TDS_u8CurrTempArr,10.00);
+*/
+
+      float ADC_fValue = ADC_u8ReadChannel((uint8) 0);
+      float Vout = ADC_fValue * 0.0048828;
+      float temp = Vout/0.01;
+      itoa(temp,TDS_u8CurrTempArr,10);
 
  }
 
@@ -151,7 +157,7 @@ void TDS_vidManager(void *pt)
    }
 
 
-   LCD_SEND_XY(RAW0,COLUMN10,TDS_u8CurrTempArr);
+  LCD_SEND_XY(RAW0,COLUMN10,TDS_u8CurrTempArr);
    
 
    TDM_u8LastTempVal = TDM_u8CurrentTemp;

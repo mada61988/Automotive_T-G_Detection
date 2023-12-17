@@ -73,13 +73,13 @@ INCLUDES:
          3- OFF
 ****/
 #define PORTD_PIN0_DIR      OUT
-#define PORTD_PIN1_DIR      IN
-#define PORTD_PIN2_DIR      IN
-#define PORTD_PIN3_DIR      IN
-#define PORTD_PIN4_DIR      IN
-#define PORTD_PIN5_DIR      IN
-#define PORTD_PIN6_DIR      IN
-#define PORTD_PIN7_DIR      IN
+#define PORTD_PIN1_DIR      OUT
+#define PORTD_PIN2_DIR      OUT
+#define PORTD_PIN3_DIR      OUT
+#define PORTD_PIN4_DIR      OUT
+#define PORTD_PIN5_DIR      OUT
+#define PORTD_PIN6_DIR      OUT
+#define PORTD_PIN7_DIR      OUT
 
 
 

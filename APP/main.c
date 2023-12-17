@@ -12,7 +12,7 @@
 - MAIN: main file of the projece, initialize the OS and Tasks
 **************************************************************************************************/
 
-
+#define TESTMODE   ON
 
 /****
 - INCLUDES:  
@@ -33,17 +33,17 @@
 - GLOBALVARS:  
 ****/
 xTaskHandle TDSTaskHandler = NULL;
-xTaskHandle GDSTaskHandler = NULL;
+xTaskHandle GDMTaskHandler = NULL;
 
 
 int main()
 {
- 
-
-    // Initialize Modules
 DIO_Init();
 LCD_INIT();
 ADC_Init();
+#if TESTMODE == OFF
+// Initialize Modules
+
 // Display Application Startup Logo
 LCD_SEND_XY(0,0," Automotive T&G ");
 _delay_ms(100);
@@ -59,15 +59,17 @@ _delay_ms(500);
 
 LCD_SEND_CMD(Clear);
 _delay_ms(100);
-GDS_vidInit();
+#endif
+
+GDM_vidInit();
 TDS_vidInit();
 
 //LCD_SEND_XY(1,6,"MADA");
 //LCD_DISP_STR("HEllo WOrld");
 // Create task for every manager function
 xTaskCreate(&TDS_vidManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
-xTaskCreate(&GDS_vidManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
-xTaskCreate(&BUZZ_vidBuzzCycleManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
+xTaskCreate(&GDM_vidManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
+//xTaskCreate(&BUZZ_vidBuzzCycleManager,NULL,200,NULL,tskIDLE_PRIORITY,NULL);
 // Run the Scheduler 
 vTaskStartScheduler();
 

@@ -5,6 +5,8 @@
         "stdlib.h": "c",
         "buzz.h": "c",
         "task.h": "c",
-        "platform_types.h": "c"
+        "platform_types.h": "c",
+        "dio_interface.h": "c",
+        "bit_math.h": "c"
     }
 }

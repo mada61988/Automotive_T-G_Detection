@@ -36,6 +36,9 @@ LCDIncFilePath = "../../HAL/01-LCD/inc/"
 	#BUZZER
 BUZZFilePath = "../../HAL/02-BUZZ/"
 
+	#MQ2
+MQ2FilePath = "../../HAL/03-MQ2/"
+
 # Function Implementation
 def copyDirectoryContent(source_folder):
 	# fetch all files
@@ -89,6 +92,8 @@ if((USER_INPUT == 1) | (USER_INPUT == 3)):
 	copyDirectoryContent(LCDSrcFilePath)
 
 	copyDirectoryContent(BUZZFilePath)
+
+	copyDirectoryContent(MQ2FilePath)
 
 	shutil.copy(mainFilePath,"./main.c")
 

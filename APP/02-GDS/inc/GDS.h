@@ -2,13 +2,13 @@
 #define EUF_APP_GDS_H
 
 //prototypes
-void GDS_vidManager(void *pt);
-void GDS_vidInit(void);
+void GDM_vidManager(void *pt);
+void GDM_vidInit(void);
 
 // STATE
-#define GDS_stateIDLE            0
-#define GDS_stateWRNG            1
-#define GDS_stateEROR            2   
+#define GDM_u8StateIDLE            (uint8)1
+#define GDM_u8StateWRNG            (uint8)2
+#define GDM_u8StateDNGR            (uint8)3   
 
 #define IDLE    "IDLE"
 #define WRNG    "WRNG"

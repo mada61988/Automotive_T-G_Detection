@@ -12,6 +12,13 @@
 #include "ADC_Interface.h"
 #include "LCD_Interface.h"
 
+
+#include <util/delay.h>
+#include <avr/interrupt.h>
+
+
+
+
 void ADC_Init (void)
 {
 	// ADC Enable
@@ -33,6 +40,7 @@ void ADC_Init (void)
 
 uint16 ADC_u8ReadChannel (uint8  u8Channel)
 {
+	
 	//Clear the MUX bits in ADMUX Reg
 	ADMUX &= 0b11100000;
 
@@ -48,6 +56,10 @@ uint16 ADC_u8ReadChannel (uint8  u8Channel)
 	// clear conversion clear flag
 	SET_BIT(ADCSRA,ADCSRA_ADIF);
 
+
 	return ADC;
 
+	
+	
 }
+

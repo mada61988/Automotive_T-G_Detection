@@ -24,25 +24,62 @@
 #include "LCD_Interface.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "MQ2_Interface.h"
+#include <stdlib.h>
+
 /****
 - GLOBALVARS:  
 ****/
-uint8  u8GDS_State; 
+uint8  GDM_u8State; 
+float Ro; 
+uint8 smoke[5];
+uint8 lpg[16];   //Liquified petroleum gas
+uint8 GDM_u8ClearLcdArr[3] = {' ',' ',' '};
 
-
-void GDS_vidInit(void)
+void GDM_vidInit(void)
 {
-    u8GDS_State = GDS_stateIDLE;
-
+    GDM_u8State = GDM_u8StateIDLE;
+    Ro = SensorCalibration();
     LCD_SEND_XY(1,0,"SMK-LVL: ");
+    //LCD_SEND_XY(1,11,"IDLE");
 }
 
-void GDS_vidManager(void *pt)
+/***
+* \brief   : Manager for Gas Deletction Module 
+  \returns : NONE 
+***/
+
+
+void GDM_vidManager(void *pt)
 {
     
 while(1)
 {
-LCD_SEND_XY(1,11,"IDLE");
+
+    switch(GDM_u8State)
+    {
+        case GDM_u8StateIDLE:
+        // First Get the GAS Persentage
+        itoa(GetGasPercentage(ReadSensor()/Ro,LPG), smoke, 10);
+        // LCD_SEND_XY(RAW1,COLUMN10,smoke[0]);
+       //itoa(GetGasPercentage(ReadSensor()/Ro,SMOKE), smoke, 10);
+      // itoa(Ro,smoke,10);
+       // LCD_SEND_XY(1,0,GDM_u8ClearLcdArr);
+       // LCD_SEND_XY(1,0,smoke);
+
+        break;
+
+        case GDM_u8StateWRNG:
+
+        break;
+
+
+        case GDM_u8StateDNGR:
+
+        break;
+        
+    }
+
 vTaskDelay(100);
 }
     
