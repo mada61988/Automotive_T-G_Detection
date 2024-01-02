@@ -38,7 +38,7 @@ uint8 TDS_u8State;
 uint8 TDS_u8CurrTempArr[16];
 uint8 TDS_u8CelsiusSymbol[]={0b11011111,0b01000011};
 uint8 TDM_u8CurrentTemp;
-uint8 TDM_u8ClrDispArr[] = "   ";
+uint8 TDM_u8ClrDispArr[] = "      ";
 uint8 TDM_u8LastTempVal;
 
 void TDS_vidInit(void)
@@ -127,7 +127,8 @@ void TDS_vidManager(void *pt)
    
     
 }
-
+char arr1[10];
+char arr2[10];
  void TDS_vidGetCurrTemp()
  {
 
@@ -135,30 +136,62 @@ void TDS_vidManager(void *pt)
   /*
     float ADC_u8Resolution = 5.0/1024; //4.88v
     float Vout = ((ADC_u8ReadChannel((uint8) 0) ) * ADC_u8Resolution);
-    TDM_u8CurrentTemp = (Vout/0.01);
+    TDM_u8Cu(char)intValuerrentTemp = (Vout/0.01);
   
     itoa(TDM_u8CurrentTemp,TDS_u8CurrTempArr,10.00);
 */
+uint16 container=0;
 
-      float ADC_fValue = ADC_u8ReadChannel((uint8) 0);
-      float Vout = ADC_fValue * 0.0048828;
-      float temp = Vout/0.01;
-      itoa(temp,TDS_u8CurrTempArr,10);
+     // for(uint8 i =0;i<10;i++) container += ADC_u8ReadChannel((uint8) 0);
+
+      //uint16 ADC_fValue = container / 10;
+      uint16 ADC_fRawADC = ADC_u8ReadChannel((uint8) 0);
+      double Vout = ADC_fRawADC * 0.0048828;
+     // double temp = Vout/0.01;
+
+
+      float TDM_u16MiliVolt = ( ((uint32)ADC_u8ReadChannel((uint8) 0)) * 5000UL ) / 256UL;
+      float celcuis = TDM_u16MiliVolt / 10;  
+
+      double temperature = ((double)ADC_fRawADC / 255.0) * 100.0;
+            int intValue = (int)temperature;
+       int decimalPart = (temperature - intValue) * 100;
+ //float TDM_u16Volt = TDM_u16MiliVolt / (float)1000;
+
+for(uint8 i=0;i<16;i++){
+TDS_u8CurrTempArr[i] = ' ';
+}
+
+itoa(intValue,arr1,10);
+
+itoa(decimalPart,arr2,10);
+
+      // Every 0.01V is equal to 1C, so to get the current Temp we devide the voltage with 0.01
+    //  float temp = TDM_u16Volt/0.01;  
+        //float temp = TDM_u16MiliVolt/10;
+      //uint16 adcRow = ADC_u8ReadChannel((uint8)0);
+
+      itoa(ADC_fRawADC,TDS_u8CurrTempArr,10);
+
+ 
+
+
 
  }
 
  void TDS_vidDisplayTemp()
  {
-   if( (TDM_u8LastTempVal >= 100) && (TDM_u8CurrentTemp < 100) )
-   {
+
     // Remove the current displayed number
     LCD_SEND_XY(RAW0,COLUMN10,TDM_u8ClrDispArr);
-   
-   }
+   LCD_SEND_CMD(Clear);
+  
 
 
-  LCD_SEND_XY(RAW0,COLUMN10,TDS_u8CurrTempArr);
-   
+  //LCD_SEND_XY(RAW0,COLUMN0,TDS_u8CurrTempArr);
+   LCD_SEND_XY(RAW0,COLUMN0,arr1);
+   LCD_DISP_CHAR((char)'.');
+  LCD_DISP_STR(arr2);
 
    TDM_u8LastTempVal = TDM_u8CurrentTemp;
  }

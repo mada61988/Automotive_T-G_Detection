@@ -12,7 +12,7 @@
 #include "ADC_Interface.h"
 #include "LCD_Interface.h"
 
-
+#include "dio_register.h"
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
@@ -34,8 +34,8 @@ void ADC_Init (void)
 	CLR_BIT(ADMUX,ADMUX_REFS1);
 	SET_BIT(ADMUX,ADMUX_REFS0);
 
-	// ADC Use left adjust 
-	CLR_BIT(ADMUX,ADMUX_ADLAR);
+	// ADC Use Left adjust 
+	SET_BIT(ADMUX,ADMUX_ADLAR);
 }
 
 uint16 ADC_u8ReadChannel (uint8  u8Channel)
@@ -56,10 +56,14 @@ uint16 ADC_u8ReadChannel (uint8  u8Channel)
 	// clear conversion clear flag
 	SET_BIT(ADCSRA,ADCSRA_ADIF);
 
-
-	return ADC;
+	//uint16 res = ((((uint16)ADCL_Reg & 0xC0) >> 6) & (uint16)3) & (((uint16)ADCH_Reg)<< 2) ;
+	//uint16 res = (uint16)((ADCL_Reg >> (uint8)6) & (uint8)3) & (uint16)(ADCH_Reg << (uint8)2);
+	return ADCH_Reg;
 
 	
 	
 }
 
+
+
+ 

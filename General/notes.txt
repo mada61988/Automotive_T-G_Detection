@@ -1,0 +1,2 @@
+OK, just to update, in case someone else needs this info, in the future. The diagram he has included shows the resistors installed on the data side of the circuit. This will result in backwards readings. However, if you reverse the data and ground connections (connect the yellow wire to 5v and then the black wire to A0 and to ground, through the resistors), it will work perfectly!
+Thanks again for the info!!!!!

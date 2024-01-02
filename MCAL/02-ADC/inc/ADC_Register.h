@@ -9,7 +9,7 @@
 
 #define ADMUX 	*((volatile uint8 *)0x27) 	// ADC Multiplexer Register
 #define ADMUX_REFS1     7
-#define ADMUX_REFS0     7
+#define ADMUX_REFS0     6
 #define ADMUX_ADLAR     5
 
 #define ADCSRA 	*((volatile uint8 *)0x26) 	// ADC Control And Status Register
